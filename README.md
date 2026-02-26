@@ -10,13 +10,16 @@ The **Student Course Planner** is a full-stack web application designed to help 
 
 ## Technology Stack
 * **Front-End: N/A**
-* **Back-End: N/A**
-* **Database: N/A**
+* **Back-End:** Node.js, Express.js
+* **Database: PostgreSQL/MYSQL**
 * **Version Control:** GitHub
 
 
 ## Installation & Setup
-N/A
+Backend (Milestone 2 skeleton)
+1. `cd backend`
+2. `npm install`
+3. `npm start`
 
 ## Documentation
 * **Project Board:** [CP476 Project Board](https://github.com/users/daniel-rbz/projects/3)
