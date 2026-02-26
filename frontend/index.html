@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Course Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- top bar design for profile, logouts, and the adding a new term button -->
+    <div class="header">
+        <button onclick="showTermModal()" class="black-btn">+ Add New Term</button>
+        <div>
+            <button class="white-btn">My Profile</button>
+            <button class="white-btn">Logout</button>
+        </div>
+    </div>
+
+    <!-- complete placeholder data for the dashboard, currently hard-coded -->
+    <div class="dashboard">
+        
+        <div class="term-box">
+            <h3>Fall 2025</h3>
+            
+            <div class="course-box">
+                <div class="course-top-row">
+                    <b>CP476</b>
+                    <span class="badge-black">Completed</span>
+                </div>
+                <p class="course-name">Internet Computing</p>
+            </div>
+
+            <div class="course-box">
+                <div class="course-top-row">
+                    <b>CP372</b>
+                    <span class="badge-black">Completed</span>
+                </div>
+                <p class="course-name">Computer Networks</p>
+            </div>
+
+            <button onclick="showCourseModal()" class="add-course-btn">+ Add Course</button>
+        </div>
+
+        <div class="term-box">
+            <h3>Winter 2026</h3>
+            
+            <div class="course-box">
+                <div class="course-top-row">
+                    <b>CP468</b>
+                    <span class="badge-white">Planned</span>
+                </div>
+                <p class="course-name">Artificial Intelligence</p>
+            </div>
+
+            <button onclick="showCourseModal()" class="add-course-btn">+ Add Course</button>
+        </div>
+
+    </div>
+
+    <!-- new term popup box design -->
+    <div id="termModal" class="modal-background">
+        <div class="modal-box">
+            <h2>Create New Term</h2>
+            <hr>
+            
+            <p>Semester</p>
+            <select class="text-input">
+                <option>Fall</option>
+                <option>Winter</option>
+                <option>Spring</option>
+            </select>
+
+            <p>Year</p>
+            <input type="text" class="text-input" placeholder="e.g., 2026">
+
+            <br><br>
+            <button onclick="hideTermModal()" class="black-btn">Create</button>
+        </div>
+    </div>
+
+    <!-- courses pop-up box design -->
+    <div id="courseModal" class="modal-background">
+        <div class="modal-box">
+            <h2>Add New Course</h2>
+            <hr>
+            
+            <p>Course Code</p>
+            <input type="text" class="text-input" placeholder="e.g., CP476">
+
+            <p>Course Title</p>
+            <input type="text" class="text-input" placeholder="e.g., Internet Computing">
+
+            <p>Credit Weight</p>
+            <input type="text" class="text-input" placeholder="e.g., 0.5">
+
+            <p>Status</p>
+            <select class="text-input">
+                <option>Planned</option>
+                <option>Completed</option>
+            </select>
+
+            <br><br>
+            <button onclick="hideCourseModal()" class="white-btn">Cancel</button>
+            <button onclick="hideCourseModal()" class="black-btn" style="float: right;">Save Course</button>
+        </div>
+    </div>
+
+    <!-- temporary script for the buttons -->
+    <script src="script.js"></script>
+</body>
+</html>
