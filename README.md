@@ -9,7 +9,7 @@ The **Student Course Planner** is a full-stack web application designed to help 
 * **Adam Moor**
 
 ## Technology Stack
-* **Front-End: N/A**
+* **Front-End: HTML5/CSS3 (Potentially React)**
 * **Back-End:** Node.js, Express.js
 * **Database: PostgreSQL/MYSQL**
 * **Version Control:** GitHub
