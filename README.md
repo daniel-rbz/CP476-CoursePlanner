@@ -24,3 +24,7 @@ Backend (Milestone 2 skeleton)
 ## Documentation
 * **Project Board:** [CP476 Project Board](https://github.com/users/daniel-rbz/projects/3)
 * **Wiki/Activity Log:** [CP476 Wiki](https://github.com/daniel-rbz/CP476-CoursePlanner/wiki)
+
+## Contributions
+* **Front End + Database** Daniel Ramirez Bumaguin
+* **Back End** Victor Ene
