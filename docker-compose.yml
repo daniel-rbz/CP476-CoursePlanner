@@ -5,7 +5,39 @@ services:
       context: .
     image: danielrbz/courseplanner:1.0
     ports:
-      - "3000:3000"
+      - "${PORT:-3000}:3000"
     environment:
-      PORT: "3000"
+      PORT: "${PORT:-3000}"
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_USER: "${DB_USER:-appuser}"
+      DB_PASSWORD: "${DB_PASSWORD:-apppass}"
+      DB_NAME: "${DB_NAME:-courseplanner}"
+    depends_on:
+      db:
+        condition: service_healthy
     restart: unless-stopped
+
+  db:
+    image: mysql:8.4
+    container_name: cp476-mysql
+    ports:
+      - "${DB_LOCAL_PORT:-3306}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD:-rootpass}"
+      MYSQL_DATABASE: "${DB_NAME:-courseplanner}"
+      MYSQL_USER: "${DB_USER:-appuser}"
+      MYSQL_PASSWORD: "${DB_PASSWORD:-apppass}"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u$${MYSQL_USER} -p$${MYSQL_PASSWORD} || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: unless-stopped
+
+volumes:
+  mysql_data:

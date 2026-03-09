@@ -11,7 +11,7 @@ The **Student Course Planner** is a full-stack web application that helps studen
 ## Technology Stack
 - **Front End:** HTML, CSS, JavaScript
 - **Back End:** Node.js, Express.js
-- **Database:** MySQL (planned)
+- **Database:** MySQL 8 (Docker Compose)
 - **Containerization:** Docker, Docker Compose
 - **Version Control:** GitHub
 
@@ -70,6 +70,42 @@ From the project root:
 	```
 
 The compose setup builds from `Dockerfile` and uses image tag `danielrbz/courseplanner:1.0`.
+
+## MySQL Setup (Ready Now)
+The compose file includes a `db` service (`mysql:8.4`) and auto-runs SQL files in `mysql/init/` on first database creation.
+
+1. Create a local environment file:
+
+	```powershell
+	Copy-Item .env.example .env
+	```
+
+2. Start only MySQL:
+
+	```bash
+	docker compose up -d db
+	```
+
+3. Verify the database tables were created:
+
+	```bash
+	docker compose exec db mysql -uappuser -papppass -D courseplanner -e "SHOW TABLES;"
+	```
+
+Expected tables:
+- `Users`
+- `Terms`
+- `Courses`
+
+Notes:
+- Schema bootstrap file: `mysql/init/schema.sql`
+- Init scripts run only when the MySQL data volume is new.
+- To re-run init scripts, remove the volume and start again:
+
+  ```bash
+  docker compose down -v
+  docker compose up -d db
+  ```
 
 ## Build and Run Docker Image Manually
 From the project root:
