@@ -1,0 +1,11 @@
+services:
+  app:
+    container_name: cp476-courseplanner
+    build:
+      context: .
+    image: danielrbz/courseplanner:1.0
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: "3000"
+    restart: unless-stopped
