@@ -84,13 +84,41 @@ body {
     padding: 3px 5px;
 }
 
+.course-status-toggle {
+    cursor: pointer;
+}
+
+.delete-course-btn {
+    display: block;
+    margin-top: 8px;
+    margin-left: auto;
+    padding: 4px 8px;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    font-size: 11px;
+}
+
 .add-course-btn {
-    width: 100%;
+    flex: 1;
     padding: 10px;
     background-color: white;
     border: 1px solid black;
     cursor: pointer;
+}
+
+.term-actions {
+    display: flex;
+    gap: 8px;
     margin-top: 20px;
+}
+
+.delete-term-btn {
+    padding: 10px 12px;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    font-size: 12px;
 }
 
 /* modal styling for when a popup box appears */

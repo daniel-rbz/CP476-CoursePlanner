@@ -8,4 +8,7 @@ router.get('/', termController.getAllTerms);
 // route to create a new term
 router.post('/', termController.createTerm);
 
+// route to delete a term by name
+router.delete('/:termName', termController.deleteTerm);
+
 module.exports = router;

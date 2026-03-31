@@ -8,4 +8,10 @@ router.get('/', courseController.getAllCourses);
 // route to create a new course
 router.post('/', courseController.createCourse);
 
+// route to toggle course status
+router.patch('/:id/status', courseController.toggleCourseStatus);
+
+// route to delete a course
+router.delete('/:id', courseController.deleteCourse);
+
 module.exports = router;

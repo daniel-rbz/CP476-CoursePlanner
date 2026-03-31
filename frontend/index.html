@@ -24,20 +24,25 @@
             <div class="course-box">
                 <div class="course-top-row">
                     <b>CP476</b>
-                    <span class="badge-black">Completed</span>
+                    <span onclick="toggleCourseStatus(this)" class="badge-black course-status-toggle">Completed</span>
                 </div>
                 <p class="course-name">Internet Computing</p>
+                <button onclick="deleteCourse(this)" class="delete-course-btn">Delete Course</button>
             </div>
 
             <div class="course-box">
                 <div class="course-top-row">
                     <b>CP372</b>
-                    <span class="badge-black">Completed</span>
+                    <span onclick="toggleCourseStatus(this)" class="badge-black course-status-toggle">Completed</span>
                 </div>
                 <p class="course-name">Computer Networks</p>
+                <button onclick="deleteCourse(this)" class="delete-course-btn">Delete Course</button>
             </div>
 
-            <button onclick="showCourseModal()" class="add-course-btn">+ Add Course</button>
+            <div class="term-actions">
+                <button onclick="showCourseModal(this)" class="add-course-btn">+ Add Course</button>
+                <button onclick="deleteTerm(this)" class="delete-term-btn">Delete</button>
+            </div>
         </div>
 
         <div class="term-box">
@@ -46,12 +51,16 @@
             <div class="course-box">
                 <div class="course-top-row">
                     <b>CP468</b>
-                    <span class="badge-white">Planned</span>
+                    <span onclick="toggleCourseStatus(this)" class="badge-white course-status-toggle">Planned</span>
                 </div>
                 <p class="course-name">Artificial Intelligence</p>
+                <button onclick="deleteCourse(this)" class="delete-course-btn">Delete Course</button>
             </div>
 
-            <button onclick="showCourseModal()" class="add-course-btn">+ Add Course</button>
+            <div class="term-actions">
+                <button onclick="showCourseModal(this)" class="add-course-btn">+ Add Course</button>
+                <button onclick="deleteTerm(this)" class="delete-term-btn">Delete</button>
+            </div>
         </div>
 
     </div>
@@ -63,17 +72,17 @@
             <hr>
             
             <p>Semester</p>
-            <select class="text-input">
+            <select id="termSemesterInput" class="text-input">
                 <option>Fall</option>
                 <option>Winter</option>
                 <option>Spring</option>
             </select>
 
             <p>Year</p>
-            <input type="text" class="text-input" placeholder="e.g., 2026">
+            <input id="termYearInput" type="text" class="text-input" placeholder="e.g., 2026">
 
             <br><br>
-            <button onclick="hideTermModal()" class="black-btn">Create</button>
+            <button onclick="saveTermFromModal()" class="black-btn">Create</button>
         </div>
     </div>
 
@@ -84,23 +93,23 @@
             <hr>
             
             <p>Course Code</p>
-            <input type="text" class="text-input" placeholder="e.g., CP476">
+            <input id="courseCodeInput" type="text" class="text-input" placeholder="e.g., CP476">
 
             <p>Course Title</p>
-            <input type="text" class="text-input" placeholder="e.g., Internet Computing">
+            <input id="courseTitleInput" type="text" class="text-input" placeholder="e.g., Internet Computing">
 
             <p>Credit Weight</p>
-            <input type="text" class="text-input" placeholder="e.g., 0.5">
+            <input id="courseCreditInput" type="text" class="text-input" placeholder="e.g., 0.5">
 
             <p>Status</p>
-            <select class="text-input">
+            <select id="courseStatusInput" class="text-input">
                 <option>Planned</option>
                 <option>Completed</option>
             </select>
 
             <br><br>
             <button onclick="hideCourseModal()" class="white-btn">Cancel</button>
-            <button onclick="hideCourseModal()" class="black-btn" style="float: right;">Save Course</button>
+            <button onclick="saveCourseFromModal()" class="black-btn" style="float: right;">Save Course</button>
         </div>
     </div>
 
