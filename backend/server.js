@@ -22,7 +22,7 @@ app.use(express.static(frontendPath));
 
 // serve the frontend entry point
 app.get('/', (req, res) => {
-    res.sendFile(path.join(frontendPath, 'index.html'));
+    res.sendFile(path.join(frontendPath, 'login.html'));
 });
 
 // runnable server entry point

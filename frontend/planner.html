@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Planner - Student Course Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <button onclick="showTermModal()" class="black-btn">+ Add New Term</button>
+        <div>
+            <button id="currentUserLabel" class="white-btn">My Profile</button>
+            <button id="logoutBtn" class="white-btn">Logout</button>
+        </div>
+    </div>
+
+    <div id="loadingText" class="hidden">Loading...</div>
+    <div id="dashboard" class="dashboard"></div>
+    <div id="emptyState" class="hidden">No terms yet. Click "Add New Term" to create your first term.</div>
+
+    <div id="toastMessage" class="toast hidden"></div>
+
+    <div id="termModal" class="modal-background">
+        <div class="modal-box">
+            <h2>Create New Term</h2>
+            <hr>
+
+            <p>Semester</p>
+            <select id="semesterInput" class="text-input">
+                <option>Fall</option>
+                <option>Winter</option>
+                <option>Spring</option>
+                <option>Summer</option>
+            </select>
+
+            <p>Year</p>
+            <input id="yearInput" type="number" class="text-input" placeholder="e.g., 2026">
+
+            <br><br>
+            <button onclick="hideTermModal()" class="white-btn">Cancel</button>
+            <button id="createTermBtn" class="black-btn" style="float: right;">Create</button>
+        </div>
+    </div>
+
+    <div id="courseModal" class="modal-background">
+        <div class="modal-box">
+            <h2>Add New Course</h2>
+            <hr>
+
+            <p>Course Code</p>
+            <input id="courseCodeInput" type="text" class="text-input" placeholder="e.g., CP476">
+
+            <p>Course Title</p>
+            <input id="courseTitleInput" type="text" class="text-input" placeholder="e.g., Internet Computing">
+
+            <p>Credit Weight</p>
+            <input id="creditsInput" type="number" step="0.25" class="text-input" placeholder="e.g., 0.5">
+
+            <p>Status</p>
+            <select id="statusInput" class="text-input">
+                <option>Planned</option>
+                <option>In Progress</option>
+                <option>Completed</option>
+            </select>
+
+            <br><br>
+            <button onclick="hideCourseModal()" class="white-btn">Cancel</button>
+            <button id="saveCourseBtn" class="black-btn" style="float: right;">Save Course</button>
+        </div>
+    </div>
+
+    <script src="planner.js"></script>
+</body>
+</html>

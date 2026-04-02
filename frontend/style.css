@@ -4,6 +4,34 @@ body {
     padding: 20px;
 }
 
+.hidden {
+    display: none !important;
+}
+
+.auth-container {
+    max-width: 420px;
+    border: 2px solid black;
+    padding: 20px;
+    margin: 30px auto;
+}
+
+.auth-container h1 {
+    margin-top: 0;
+}
+
+.auth-container .text-input,
+.auth-container button {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.auth-link {
+    display: block;
+    margin-top: 6px;
+    text-align: center;
+    color: black;
+}
+
 /* header styling */
 .header {
     display: flex;
@@ -34,6 +62,7 @@ body {
 .dashboard {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 /* the big boxes for each term */
@@ -118,4 +147,24 @@ body {
     padding: 8px;
     margin-bottom: 15px;
     border: 1px solid black;
+}
+
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: black;
+    color: white;
+    padding: 10px 14px;
+    z-index: 1000;
+}
+
+#loadingText {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+#emptyState {
+    margin-top: 20px;
+    color: #444;
 }
