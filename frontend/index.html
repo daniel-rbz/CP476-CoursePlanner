@@ -6,12 +6,35 @@
 </head>
 <body>
 
+    <!-- initial login screen with a registration option -->
+    <div id="authScreen" style="display:none; text-align:center; padding:40px;">
+        <h1>Student Course Planner</h1>
+        <div id="loginForm" style="max-width:300px; margin:auto;">
+            <h2>Login</h2>
+            <input type="email" id="loginEmail" placeholder="Email" style="width:100%; padding:8px; margin:8px 0;">
+            <input type="password" id="loginPassword" placeholder="Password" style="width:100%; padding:8px; margin:8px 0;">
+            <button onclick="handleLogin()" class="black-btn" style="width:100%; margin:8px 0;">Login</button>
+            <p><button onclick="toggleAuthForm()" style="background:none; border:none; color:blue; cursor:pointer;">Create account</button></p>
+        </div>
+        <div id="registerForm" style="display:none; max-width:300px; margin:auto;">
+            <h2>Register</h2>
+            <input type="email" id="regEmail" placeholder="Email" style="width:100%; padding:8px; margin:8px 0;">
+            <input type="password" id="regPassword" placeholder="Password" style="width:100%; padding:8px; margin:8px 0;">
+            <input type="password" id="regPasswordConfirm" placeholder="Confirm Password" style="width:100%; padding:8px; margin:8px 0;">
+            <button onclick="handleRegister()" class="black-btn" style="width:100%; margin:8px 0;">Register</button>
+            <p><button onclick="toggleAuthForm()" style="background:none; border:none; color:blue; cursor:pointer;">Back to login</button></p>
+        </div>
+        <div id="authError" style="color:red; margin-top:10px;"></div>
+    </div>
+
+    <div id="mainApp" style="display:none;">
+
     <!-- top bar design for profile, logouts, and the adding a new term button -->
     <div class="header">
         <button onclick="showTermModal()" class="black-btn">+ Add New Term</button>
         <div>
-            <button class="white-btn">My Profile</button>
-            <button class="white-btn">Logout</button>
+            <span id="userEmail" style="margin-right:10px;"></span>
+            <button onclick="handleLogout()" class="white-btn">Logout</button>
         </div>
     </div>
 
@@ -111,6 +134,8 @@
             <button onclick="hideCourseModal()" class="white-btn">Cancel</button>
             <button onclick="saveCourseFromModal()" class="black-btn" style="float: right;">Save Course</button>
         </div>
+    </div>
+
     </div>
 
     <!-- temporary script for the buttons -->

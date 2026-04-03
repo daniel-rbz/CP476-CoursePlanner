@@ -11,7 +11,7 @@ The **Student Course Planner** is a full-stack web application designed to help 
 ## Technology Stack
 * **Front-End: HTML5/CSS3 (Potentially React)**
 * **Back-End:** Node.js, Express.js
-* **Database: PostgreSQL/MYSQL**
+* **Database: SQLite3**
 * **Version Control:** GitHub
 
 
@@ -27,4 +27,4 @@ Backend (Milestone 2 skeleton)
 
 ## Contributions
 * **Front End + Database** Daniel Ramirez Bumaguin
-* **Back End** Victor Ene
+* **Back End + User authentication** Victor Ene

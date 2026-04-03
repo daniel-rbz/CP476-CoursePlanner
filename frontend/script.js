@@ -1,3 +1,120 @@
+// authentication variables and functions
+let currentUser = null;
+
+function toggleAuthForm() {
+    document.getElementById("loginForm").style.display = 
+        document.getElementById("loginForm").style.display === "none" ? "block" : "none";
+    document.getElementById("registerForm").style.display = 
+        document.getElementById("registerForm").style.display === "none" ? "block" : "none";
+}
+
+async function handleLogin() {
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
+    
+    if (!email || !password) {
+        document.getElementById("authError").textContent = "Please enter email and password";
+        return;
+    }
+
+    try {
+        const response = await fetch("/api/users/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            document.getElementById("authError").textContent = data.error || "Login failed";
+            return;
+        }
+
+        currentUser = { user_id: data.user_id, email: data.email };
+        document.getElementById("loginEmail").value = "";
+        document.getElementById("loginPassword").value = "";
+        showApp();
+    } catch (error) {
+        document.getElementById("authError").textContent = "An error occurred";
+    }
+}
+
+async function handleRegister() {
+    const email = document.getElementById("regEmail").value.trim();
+    const password = document.getElementById("regPassword").value;
+    const confirm = document.getElementById("regPasswordConfirm").value;
+    
+    if (!email || !password || !confirm) {
+        document.getElementById("authError").textContent = "Please fill in all fields";
+        return;
+    }
+    
+    if (password !== confirm) {
+        document.getElementById("authError").textContent = "Passwords do not match";
+        return;
+    }
+
+    try {
+        const response = await fetch("/api/users/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            document.getElementById("authError").textContent = data.error || "Registration failed";
+            return;
+        }
+
+        currentUser = { user_id: data.user_id, email: data.email };
+        document.getElementById("regEmail").value = "";
+        document.getElementById("regPassword").value = "";
+        document.getElementById("regPasswordConfirm").value = "";
+        showApp();
+    } catch (error) {
+        document.getElementById("authError").textContent = "An error occurred";
+    }
+}
+
+async function handleLogout() {
+    try {
+        await fetch("/api/users/logout", { method: "POST" });
+    } catch (error) {
+        console.warn("Logout failed", error);
+    }
+    
+    currentUser = null;
+    document.getElementById("authScreen").style.display = "block";
+    document.getElementById("mainApp").style.display = "none";
+    document.getElementById("authError").textContent = "";
+    document.getElementById("loginForm").style.display = "block";
+    document.getElementById("registerForm").style.display = "none";
+}
+
+function showApp() {
+    document.getElementById("authScreen").style.display = "none";
+    document.getElementById("mainApp").style.display = "block";
+    document.getElementById("userEmail").textContent = "Logged in as: " + currentUser.email;
+}
+
+async function checkAuth() {
+    try {
+        const response = await fetch("/api/users/session");
+        if (response.ok) {
+            const data = await response.json();
+            currentUser = { user_id: data.user_id, email: data.email };
+            showApp();
+        } else {
+            document.getElementById("authScreen").style.display = "block";
+            document.getElementById("mainApp").style.display = "none";
+        }
+    } catch (error) {
+        document.getElementById("authScreen").style.display = "block";
+        document.getElementById("mainApp").style.display = "none";
+    }
+}
+
 // term pop-up button
 function showTermModal() {
     document.getElementById("termModal").style.display = "block";
@@ -343,5 +460,10 @@ async function initializePlanner() {
     await loadSavedTerms();
     await loadSavedCourses();
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+    checkAuth();
+    initializePlanner();
+});
 
 document.addEventListener("DOMContentLoaded", initializePlanner);

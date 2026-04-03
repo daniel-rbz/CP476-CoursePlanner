@@ -1,10 +1,19 @@
 const express = require('express');
 const path = require('path');
+const session = require('express-session');
 const app = express();
 const port = 3000;
 
 // middleware to parse JSON requests
 app.use(express.json());
+
+// session middleware
+app.use(session({
+  secret: 'course-planner-secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 1000 * 60 * 60 * 24 }
+}));
 
 app.use(express.static('frontend'));
 

@@ -13,6 +13,8 @@ dist/
 build/
 coverage/
 
+database.db
+
 .vscode/
 .idea/
 *.swp
