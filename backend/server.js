@@ -3,7 +3,6 @@ const path = require('path');
 const session = require('express-session');
 const app = express();
 const port = 3000;
-const frontendPath = path.join(__dirname, '..', 'frontend');
 
 // middleware to parse JSON requests
 app.use(express.json());
@@ -16,6 +15,8 @@ app.use(session({
   cookie: { maxAge: 1000 * 60 * 60 * 24 }
 }));
 
+app.use(express.static('frontend'));
+
 // import routes
 const termRoutes = require('./routes/terms');
 const userRoutes = require('./routes/users');
@@ -27,6 +28,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
 
 // serve frontend static files
+const frontendPath = path.join(__dirname, '..', 'frontend');
 app.use(express.static(frontendPath));
 
 // serve the frontend entry point
