@@ -84,19 +84,38 @@ body {
     padding: 3px 5px;
 }
 
+.badge-gray {
+    background-color: #888;
+    color: white;
+    font-size: 12px;
+    padding: 3px 5px;
+}
+
 .course-status-toggle {
     cursor: pointer;
 }
 
 .delete-course-btn {
-    display: block;
-    margin-top: 8px;
-    margin-left: auto;
     padding: 4px 8px;
     background-color: white;
     border: 1px solid black;
     cursor: pointer;
     font-size: 11px;
+}
+
+.edit-course-btn {
+    padding: 4px 8px;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.course-card-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    justify-content: flex-end;
 }
 
 .add-course-btn {

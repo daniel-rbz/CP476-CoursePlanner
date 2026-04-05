@@ -11,6 +11,9 @@ router.post('/', courseController.createCourse);
 // route to toggle course status
 router.patch('/:id/status', courseController.toggleCourseStatus);
 
+// route to update a course's fields
+router.put('/:id', courseController.updateCourse);
+
 // route to delete a course
 router.delete('/:id', courseController.deleteCourse);
 

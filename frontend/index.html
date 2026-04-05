@@ -38,54 +38,8 @@
         </div>
     </div>
 
-    <!-- complete placeholder data for the dashboard, currently hard-coded -->
+    <!-- dashboard where terms and courses are rendered dynamically -->
     <div class="dashboard">
-        
-        <div class="term-box">
-            <h3>Fall 2025</h3>
-            
-            <div class="course-box">
-                <div class="course-top-row">
-                    <b>CP476</b>
-                    <span onclick="toggleCourseStatus(this)" class="badge-black course-status-toggle">Completed</span>
-                </div>
-                <p class="course-name">Internet Computing</p>
-                <button onclick="deleteCourse(this)" class="delete-course-btn">Delete Course</button>
-            </div>
-
-            <div class="course-box">
-                <div class="course-top-row">
-                    <b>CP372</b>
-                    <span onclick="toggleCourseStatus(this)" class="badge-black course-status-toggle">Completed</span>
-                </div>
-                <p class="course-name">Computer Networks</p>
-                <button onclick="deleteCourse(this)" class="delete-course-btn">Delete Course</button>
-            </div>
-
-            <div class="term-actions">
-                <button onclick="showCourseModal(this)" class="add-course-btn">+ Add Course</button>
-                <button onclick="deleteTerm(this)" class="delete-term-btn">Delete</button>
-            </div>
-        </div>
-
-        <div class="term-box">
-            <h3>Winter 2026</h3>
-            
-            <div class="course-box">
-                <div class="course-top-row">
-                    <b>CP468</b>
-                    <span onclick="toggleCourseStatus(this)" class="badge-white course-status-toggle">Planned</span>
-                </div>
-                <p class="course-name">Artificial Intelligence</p>
-                <button onclick="deleteCourse(this)" class="delete-course-btn">Delete Course</button>
-            </div>
-
-            <div class="term-actions">
-                <button onclick="showCourseModal(this)" class="add-course-btn">+ Add Course</button>
-                <button onclick="deleteTerm(this)" class="delete-term-btn">Delete</button>
-            </div>
-        </div>
-
     </div>
 
     <!-- new term popup box design -->
@@ -99,20 +53,22 @@
                 <option>Fall</option>
                 <option>Winter</option>
                 <option>Spring</option>
+                <option>Summer</option>
             </select>
 
             <p>Year</p>
             <input id="termYearInput" type="text" class="text-input" placeholder="e.g., 2026">
 
             <br><br>
-            <button onclick="saveTermFromModal()" class="black-btn">Create</button>
+            <button onclick="hideTermModal()" class="white-btn">Cancel</button>
+            <button onclick="saveTermFromModal()" class="black-btn" style="float: right;">Create</button>
         </div>
     </div>
 
     <!-- courses pop-up box design -->
     <div id="courseModal" class="modal-background">
         <div class="modal-box">
-            <h2>Add New Course</h2>
+            <h2 id="courseModalTitle">Add New Course</h2>
             <hr>
             
             <p>Course Code</p>
@@ -122,11 +78,15 @@
             <input id="courseTitleInput" type="text" class="text-input" placeholder="e.g., Internet Computing">
 
             <p>Credit Weight</p>
-            <input id="courseCreditInput" type="text" class="text-input" placeholder="e.g., 0.5">
+            <select id="courseCreditInput" class="text-input">
+                <option value="0.5">0.50</option>
+                <option value="0.25">0.25</option>
+            </select>
 
             <p>Status</p>
             <select id="courseStatusInput" class="text-input">
                 <option>Planned</option>
+                <option>In Progress</option>
                 <option>Completed</option>
             </select>
 
