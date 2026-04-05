@@ -1,6 +1,24 @@
 // authentication variables and functions
 let currentUser = null;
 
+async function readJsonResponse(response) {
+    const responseText = await response.text();
+
+    if (!responseText) {
+        return {};
+    }
+
+    try {
+        return JSON.parse(responseText);
+    } catch (error) {
+        return {
+            error: response.ok
+                ? "Unexpected server response."
+                : "The app could not reach the account service. Make sure the backend server is running on http://localhost:3000."
+        };
+    }
+}
+
 function toggleAuthForm() {
     document.getElementById("loginForm").style.display = 
         document.getElementById("loginForm").style.display === "none" ? "block" : "none";
@@ -24,7 +42,7 @@ async function handleLogin() {
             body: JSON.stringify({ email, password })
         });
 
-        const data = await response.json();
+        const data = await readJsonResponse(response);
         if (!response.ok) {
             document.getElementById("authError").textContent = data.error || "Login failed";
             return;
@@ -35,7 +53,7 @@ async function handleLogin() {
         document.getElementById("loginPassword").value = "";
         showApp();
     } catch (error) {
-        document.getElementById("authError").textContent = "An error occurred";
+        document.getElementById("authError").textContent = "Could not connect to the server. Start the backend and try again.";
     }
 }
 
@@ -61,7 +79,7 @@ async function handleRegister() {
             body: JSON.stringify({ email, password })
         });
 
-        const data = await response.json();
+        const data = await readJsonResponse(response);
         if (!response.ok) {
             document.getElementById("authError").textContent = data.error || "Registration failed";
             return;
@@ -73,7 +91,7 @@ async function handleRegister() {
         document.getElementById("regPasswordConfirm").value = "";
         showApp();
     } catch (error) {
-        document.getElementById("authError").textContent = "An error occurred";
+        document.getElementById("authError").textContent = "Could not connect to the server. Start the backend and try again.";
     }
 }
 

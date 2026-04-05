@@ -1,6 +1,5 @@
-const sqlite3 = require('sqlite3').verbose();
 const bcrypt = require('bcrypt');
-const db = new sqlite3.Database('./database.db');
+const db = require('../db');
 
 // handle user signup
 exports.signup = (req, res) => {
@@ -21,7 +20,7 @@ exports.signup = (req, res) => {
           if (err.message.includes('UNIQUE')) {
             return res.status(409).json({ error: 'Email already exists' });
           }
-          return res.status(500).json({ error: 'Signup failed' });
+          return res.status(500).json({ error: `Signup failed: ${err.message}` });
         }
         req.session.user_id = this.lastID;
         req.session.email = email;
