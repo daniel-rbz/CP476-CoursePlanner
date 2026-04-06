@@ -58,4 +58,4 @@ The **Student Course Planner** is a full-stack web application designed to help 
 
 ## Contributions
 * **Front End + Database** Daniel Ramirez Bumaguin
-* **Back End + User authentication** Victor Ene
+* **Back End + User authentication** Victor Ene, Adam Moor, Daniel Ramirez Bumaguin
